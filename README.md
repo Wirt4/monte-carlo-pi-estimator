@@ -2,7 +2,7 @@
 - A CLI pi estimator in Mojo
 
 ## Prequisites
-  -`pixi` for package management
+  - `pixi` for package management
 
 ## Running
 - all command run inside `pi-estimator` directory
