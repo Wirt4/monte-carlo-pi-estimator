@@ -1,15 +1,15 @@
-# monte-carlo-pi-estimator
-A CLI pi estimator in Mojo, to figure out the emerging toolset
+# Monte Carlo Pi Estimator
+- A CLI pi estimator in Mojo
 
 ## Prequisites
-  This project uses 'pixi' for package management instead of pip.
+  -`pixi` for package management
 
-## building and running
-
-cd into 'pi-estimator directory'
-to start the env, run `pixi shell`
-To build, run `mojo build estimate-pi.mojo`
-To execute, run `./estimate-pi`
-
-to build and run with just-in-time compilation, run `mojo estimate-pi.mojo`
-To deactivate the environment, run `conda deactivate`
+## Running
+- all command run inside `pi-estimator` directory
+### starting and stopping the virtual environment
+- `pixi shell` to start
+- `conda deactivate` to stop
+### Building and Executing the Project
+  - `mojo build estimate-.pi.mojo` to build
+  - `./estimate-pi` to execute
+  - `mojo estimate-pi.mojo` to do both at the same time 
