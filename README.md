@@ -5,8 +5,8 @@
   - `pixi` for package management
 
 ## Running
-- all command run inside `pi-estimator` directory
-### starting and stopping the virtual environment
+- all commands run inside the directory `pi-estimator`
+### Starting and Stopping the Virtual Environment
 - `pixi shell` to start
 - `conda deactivate` to stop
 ### Building and Executing the Project
