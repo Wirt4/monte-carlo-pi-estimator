@@ -8,11 +8,10 @@ RUN apt-get update && apt-get install -y \
     curl \
     git \
     bash \
-    vim \
-    python3 \
     ca-certificates \
     clang \
     build-essential \
+    zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Pixi
@@ -22,3 +21,5 @@ ENV PATH="/root/.pixi/bin:$PATH"
 # Copy project files
 COPY . /app
 
+#install pixi
+RUN pixi install
