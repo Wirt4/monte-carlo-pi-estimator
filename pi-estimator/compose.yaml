@@ -1,0 +1,9 @@
+services:
+  app:
+    build:
+      context: .
+    stdin_open: true
+    tty: true
+    command: /bin/sh -i -c "pixi shell"
+    volumes:
+      - .:/app
