@@ -1,5 +1,6 @@
 # Content of test_quickstart.mojo
 from testing import assert_equal
+from pi_estimator import Pi
 
 def inc(n: Int) -> Int:
     return n + 1
