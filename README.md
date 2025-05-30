@@ -19,6 +19,15 @@ Shutting down is an easy enough process. Run `exit` to get out of the virtual en
 ## Prequisites
   - `Docker` and `Docker Desktop`
 
+## Challenges
+
+Mojo is an emerging language, and as of May 2025, it presents unique challenges:
+  - Limited community support and documentation
+  - Evolving tooling and ecosystem
+  - Lack of official Docker images
+
+These challenges offer an opportunity to find solutions from the bolts-up and contribute to the Mojo ecosystem.
+
 ## License
  
 The MIT License (MIT)
