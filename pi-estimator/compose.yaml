@@ -5,3 +5,5 @@ services:
     stdin_open: true
     tty: true
     command: /bin/sh -i  
+    volumes:
+      - .:/app

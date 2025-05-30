@@ -1,11 +1,10 @@
 [workspace]
-authors = ["Wirt S. <34081557+Wirt4@users.noreply.github.com>"]
 channels = ["https://conda.modular.com/max-nightly", "conda-forge"]
-name = "pi-estimator"
-platforms = ["linux-x86_64"]
+name = "app"
+platforms = ["linux-aarch64"]
 version = "0.1.0"
 
 [tasks]
 
 [dependencies]
-modular = ">=25.4.0.dev2025052817,<26"
+modular = ">=25.4.0.dev2025052905,<26"
