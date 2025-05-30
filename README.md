@@ -12,7 +12,7 @@ This project implements a Monte Carlo method to estimate the value of π using [
 ## Getting Started
 Since Mojo currently has limited platform support, we're containerized in Docker. Check that docker is running. Build the project with `docker compose build`. Start the environment with `docker compose run --rm app`.
 
-The app can be run as a compiled executable, or with just-in-time compiling, To compile the app, run `mojo build estimate-pi.mojo`. To run the compiled executable, run `./estimate-pi`. To run the app with just-in-time compilation, run `mojo estimate-pi.mojo`.
+All commands to compile and run the app are executed from inside the `pi-estimator` directory. To compile the app, run `mojo build estimate-pi.mojo`. To run the compiled executable, run `./estimate-pi`. To run the app with just-in-time compilation, run `mojo estimate-pi.mojo`.
 
 Shutting down is an easy enough process. Run `exit` to get out of the virtual environment, then `docker compose down` to shut down any remaining containers.
 
