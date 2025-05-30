@@ -1,0 +1,13 @@
+.
+..
+.dockerignore
+.gitattributes
+.gitignore
+.pixi
+compose.yaml
+dir.txt
+Dockerfile
+estimate-pi.mojo
+pixi.lock
+pixi.toml
+README.Docker.md

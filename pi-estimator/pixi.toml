@@ -2,7 +2,7 @@
 authors = ["Wirt S. <34081557+Wirt4@users.noreply.github.com>"]
 channels = ["https://conda.modular.com/max-nightly", "conda-forge"]
 name = "pi-estimator"
-platforms = ["osx-arm64"]
+platforms = ["linux-x86_64"]
 version = "0.1.0"
 
 [tasks]
