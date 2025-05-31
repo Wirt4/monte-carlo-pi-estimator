@@ -1,13 +1,13 @@
 from testing import assert_true, assert_almost_equal, assert_equal
 from modules.pi_estimator import Pi
-import random
+from random import seed
 
 def test_pi_range():
     est = Pi().estimate(100)
     assert_true(est > 2.0 and est < 4.0)
 
 def test_rough_accuracy():
-    random.seed(42)
+    seed(42)
     est = Pi().estimate(500)
     assert_true(abs(est -3.1) < 0.3)
 
