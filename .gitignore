@@ -1,6 +1,6 @@
 
 # pixi environments
-pi-estimator/.pixi
-pi-estimator/*.egg-info
+.pixi
+*.egg-info
 # The compiled executable
-pi-estimator/estimate-pi
+main
