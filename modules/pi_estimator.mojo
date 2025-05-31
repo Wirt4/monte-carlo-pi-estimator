@@ -6,11 +6,9 @@ struct Pi():
 		for _ in range(n):
 			x = random.random_float64(-1.0, 1.0)
 			y = random.random_float64(-1.0, 1.0)
-			if x**2 + y**2 <= 1.0: # because the radius is 1, then 1 == 1**2
-				c += 1
-		estimate = 4 * c / n
-		print ('estimate', estimate)
-		return estimate
+			if x**2 + y**2 <= 1.0:
+				c +=1# because the radius is 1, then 1
+		return 4 * c / n
 
 		
 		
