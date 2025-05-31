@@ -1,14 +1,11 @@
 # Content of test_quickstart.mojo
 from testing import assert_equal
-from pi_estimator import Pi
+from modules.pi_estimator import Pi
 
-def inc(n: Int) -> Int:
-    return n + 1
 
-def test_inc_zero():
+def test_pi_estimate():
     # This test contains an intentional logical error to show an example of
     # what a test failure looks like at runtime.
-    assert_equal(inc(0), 0)
+    pi = Pi()
+    assert_equal(pi.estimate(10), 3.14)
 
-def test_inc_one():
-    assert_equal(inc(1), 2)

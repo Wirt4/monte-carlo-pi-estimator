@@ -1,4 +1,3 @@
-package modules
 @value
 struct Pi():
 	def estimate(self, samples: Int) -> Float64:
