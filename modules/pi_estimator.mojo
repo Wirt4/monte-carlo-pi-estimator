@@ -1,8 +1,27 @@
-
+import random
 @value
 struct Pi():
 	def estimate(self, samples: Int) -> Float64:
-		#stub
+		# assumes the virtual area is a square with a circle inscribed in it
+		# also assume a radius of 1
+		# assumes the origin of the x/y graph is dead center of the square, so 
+		# circle_area/square_area == pi/4	
+		# each sample is a point with x and y coordinates
+		# all points are inside the square, so need to determine how many are inside the circle
+		# 
 		return 3.141
 
+	fn _random_points(self ,n:Int) -> List[Point]:
+		random.seed()
+		result:List[Point] = []
+		for i in range (n):
+			print(i)
 
+
+		
+
+
+@value
+struct Point():
+	var x: Float64
+	var y: Float64
