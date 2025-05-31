@@ -16,6 +16,9 @@ To compile the app, run `mojo build estimate-pi.mojo`. To run the compiled execu
 
 Shutting down is an easy enough process. Run `exit` to get out of the virtual environment, then `docker compose down` to shut down any remaining containers.
 
+## Tests
+run `mojo test` to run all unit tests.
+
 ## Prequisites
   - `Docker` and `Docker Desktop`
 
