@@ -9,19 +9,9 @@ struct Pi():
 		# each sample is a point with x and y coordinates
 		# all points are inside the square, so need to determine how many are inside the circle
 		# 
-		return 3.141
+		return 3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647
 
-	fn _random_points(self ,n:Int) -> List[Point]:
-		random.seed()
-		result:List[Point] = []
-		for i in range (n):
-			print(i)
-
-
+		
 		
 
 
-@value
-struct Point():
-	var x: Float64
-	var y: Float64
