@@ -9,8 +9,3 @@ struct Pi():
 			if x*x + y*y <= 1:
 				c +=1
 		return 4 * c / n
-
-		
-		
-
-
