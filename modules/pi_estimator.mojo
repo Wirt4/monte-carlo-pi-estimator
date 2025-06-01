@@ -3,7 +3,7 @@ from random import random_float64
 @value
 struct Pi():
     @staticmethod
-    fn estimate_pi(n: Int) -> Float64:
+    fn estimate_pi(n: UInt64) -> Float64:
         """
         Estimates pi based on number of samples.
 
@@ -19,4 +19,4 @@ struct Pi():
             y = random_float64(-1.0, 1.0)
             if x*x + y*y <= 1:
                 c +=1
-        return 4 * c / n
+        return 4 * c / Float64(n)
