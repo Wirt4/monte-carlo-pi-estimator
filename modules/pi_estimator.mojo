@@ -2,7 +2,7 @@ from random import random_float64
 
 @value
 struct Pi():
-    fn estimate(self, n: Int) -> Float64:
+    fn estimate_pi(self, n: Int) -> Float64:
         """
         Estimates pi based on number of samples.
 
