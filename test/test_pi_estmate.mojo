@@ -1,4 +1,4 @@
-from testing import assert_true, assert_almost_equal, assert_equal
+from testing import *
 from modules.pi_estimator import Pi
 from random import seed
 
@@ -15,3 +15,7 @@ def test_accuracy_improves_with_more_points():
     est_10 = Pi.estimate_pi(10)
     est_1000 = Pi.estimate_pi(1000)
     assert_true(abs(est_1000 - 3.14159) < abs(est_10 - 3.14159))
+
+def test_raises_zero_error():
+    with assert_raises(contains="N cannot be 0"):
+        Pi.estimate_pi(0)
