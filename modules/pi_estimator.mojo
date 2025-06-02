@@ -3,7 +3,7 @@ from random import random_float64
 @value
 struct Pi():
     @staticmethod
-    fn estimate_pi(n: UInt64) -> Float64:
+    fn estimate_pi(n: UInt64) raises -> Float64:
         """
         Estimates pi based on number of samples.
 
@@ -13,6 +13,8 @@ struct Pi():
             low_fidelity_pi = Pi().estimate(100)
             high_fidelity_pi = Pi().estimate(1000000)
         """
+        if n == 0:
+            raise("N cannot be 0")
         c = 0
         for _ in range(n):
             x = random_float64(-1.0, 1.0)
