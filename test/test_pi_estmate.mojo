@@ -17,5 +17,5 @@ def test_accuracy_improves_with_more_points():
     assert_true(abs(est_1000 - 3.14159) < abs(est_10 - 3.14159))
 
 def test_raises_zero_error():
-    with assert_raises(contains="N cannot be 0"):
+    with assert_raises(contains="Number of samples cannot be 0"):
         _ = estimate_pi(0)
