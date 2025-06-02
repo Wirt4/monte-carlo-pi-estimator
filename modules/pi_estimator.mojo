@@ -5,7 +5,7 @@ struct Pi():
     @staticmethod
     fn estimate_pi(n: UInt64) raises -> Float64:
         """
-        Estimates pi based on number of samples.
+        Estimates pi based on number of samples. N may be any integer greater than 0.
 
         Lower samples means lower fidelity to pi, higher samples means highigher fidelity. This method uses the Monte Carlo method for approximating pi. Pi.estimate() can plot around 8E37 values so the upper limit is most likely how much time you want to devote your machine to processing.
 
