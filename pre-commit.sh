@@ -1,5 +1,5 @@
 #!/bin/sh
 
-# the git hook starts the environment 
+# the git hook started the environment 
 mojo format .
 mojo test
