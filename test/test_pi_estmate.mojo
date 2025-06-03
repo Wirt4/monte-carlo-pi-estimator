@@ -1,5 +1,5 @@
 from testing import *
-from pi_estimator import estimate_pi
+from modules import estimate_pi
 from random import seed
 
 
