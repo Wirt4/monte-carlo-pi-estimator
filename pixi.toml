@@ -8,4 +8,3 @@ version = "0.1.0"
 
 [dependencies]
 modular = ">=25.4.0.dev2025052905,<26"
-pre-commit = ">=4.2.0,<5"
