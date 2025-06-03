@@ -8,3 +8,4 @@ version = "0.1.0"
 
 [dependencies]
 modular = ">=25.4.0.dev2025052905,<26"
+numpy = ">=2.2.6,<3"
