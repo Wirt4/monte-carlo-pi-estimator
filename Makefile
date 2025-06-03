@@ -11,7 +11,7 @@ build:
 
 # Run the program
 run: build
-	./$(TARGET)
+	./$(TARGET) $(samples)
 
 .PHONY: test
 # Run all tests
