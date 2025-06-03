@@ -1,5 +1,6 @@
 from random import random_float64
 
+
 fn estimate_pi(samples: UInt64) raises -> Float64:
     """
     Estimates pi based on number of samples. Samples may be any integer greater than 0.
@@ -11,17 +12,15 @@ fn estimate_pi(samples: UInt64) raises -> Float64:
         high_fidelity_pi = Pi().estimate(1000000)
     """
     if samples == 0:
-        raise("Number of samples cannot be 0")
-    
+        raise ("Number of samples cannot be 0")
+
     circle_area = 0
     for _ in range(samples):
-        if random_coordinate()**2 + random_coordinate()**2 <= 1:
-            circle_area +=1
+        if random_coordinate() ** 2 + random_coordinate() ** 2 <= 1:
+            circle_area += 1
 
     return 4.0 * circle_area / Float64(samples)
 
-fn random_coordinate()->Float64:
+
+fn random_coordinate() -> Float64:
     return random_float64(-1.0, 1.0)
-
-
-
