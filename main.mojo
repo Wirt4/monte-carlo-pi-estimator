@@ -3,6 +3,13 @@ from random import seed
 from time import monotonic as current_time
 from sys import argv
 
+
+@value
+struct Wrapper:
+    var func: fn (UInt64) raises -> Float64
+    var samples: UInt64
+
+
 fn main():
     var samples: UInt64 = 1000
 
