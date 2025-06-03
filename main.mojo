@@ -1,4 +1,4 @@
-from modules import estimate_pi
+from modules import mojo_estimate_pi
 from random import seed
 from time import monotonic, sleep
 from sys import argv
@@ -13,8 +13,6 @@ struct Wrapper:
     fn run(self) raises -> None:
         seed(monotonic())
         print("π ≈ ", self.func(self.samples), "( samples:", self.samples, ")")
-
-
 
 
 fn main():
