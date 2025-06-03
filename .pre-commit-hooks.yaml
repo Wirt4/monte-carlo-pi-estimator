@@ -1,8 +1,0 @@
-repos:
-  - repo: local
-    hooks:
-      - id: format-with-mojo
-        name: Format with Mojo
-        entry: docker compose run --rm -T app pixi run mojo format .
-        language: system
-
