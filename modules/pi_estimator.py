@@ -1,14 +1,10 @@
 from random import uniform
 
-from numpy import float64, uint64
+import numpy as np
 
 
-def python_estimate_pi(samples: uint64) -> float64:
-    c: uint64 = uint64(0)
-    for _ in range(samples):
-        x = uniform(-1.0, 1.0)
-        y = uniform(-1.0, 1.0)
-        if x * x + y * y <= 1:
-            c += 1
-
-    return 4.0 * c / float64(samples)
+def python_estimate_pi(samples: int) -> float:
+    x = np.random.uniform(-1.0, 1.0, samples)
+    y = np.random.uniform(-1.0, 1.0, samples)
+    inside_circle = (x**2 + y**2) <= 1.0
+    return 4.0 * np.sum(inside_circle) / samples
