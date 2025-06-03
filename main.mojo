@@ -1,8 +1,6 @@
 from pi_estimator import estimate_pi
 from random import seed
 from time import monotonic as current_time
-
-
 # another test
 fn main():
     var samples: Int = 10_000
