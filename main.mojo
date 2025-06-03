@@ -3,8 +3,6 @@ from random import seed
 from time import monotonic as current_time
 from sys import argv
 
-
-# another test
 fn main():
     var samples: UInt64 = 1000
 
