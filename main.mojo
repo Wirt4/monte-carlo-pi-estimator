@@ -3,10 +3,6 @@ from random import seed
 from time import monotonic as current_time
 
 
-
-
-
-
 # another test
 fn main():
     var samples: Int = 10_000

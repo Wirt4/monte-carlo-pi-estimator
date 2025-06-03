@@ -19,6 +19,9 @@ Shutting down is an easy enough process. Run `exit` to get out of the virtual en
 ## Tests
 run `mojo test` to run all unit tests.
 
+## Linting
+From root directory: `mojo format .`
+
 ## Prequisites
   - `Docker` and `Docker Desktop`
 
