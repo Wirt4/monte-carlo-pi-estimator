@@ -17,8 +17,8 @@ Mojo commands are encapsulated with a Makefile. Run `make` to build the project.
 Shutting down is an easy enough process. Run `exit` to get out of the virtual environment, then `docker compose down` to shut down any remaining containers.
 
 ## Tests
-run `mojo test` to run all unit tests.
-
+run `mojo test` to run all mojo tests.
+run `python -m unittest discover -s test -p "*.py"` to run all python tests.
 ## Linting
 From root directory: `mojo format .`
 
