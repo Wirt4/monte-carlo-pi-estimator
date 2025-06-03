@@ -30,9 +30,3 @@ fn main():
     except e:
         print("error with wrapper", e)
         return
-
-    try:
-        report = benchmark.run[temp]()
-        report.print()
-    except e:
-        print(e)
