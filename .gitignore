@@ -3,4 +3,4 @@
 .pixi
 *.egg-info
 # The compiled executable
-main
+estimate_pi
