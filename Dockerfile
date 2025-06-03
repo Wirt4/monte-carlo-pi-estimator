@@ -6,7 +6,6 @@ WORKDIR /app
 # Install system packages
 RUN apt-get update && apt-get install -y \
     curl \
-    git \
     bash \
     ca-certificates \
     clang \
