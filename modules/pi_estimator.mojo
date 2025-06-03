@@ -1,7 +1,7 @@
 from random import random_float64
 
 
-fn estimate_pi(samples: UInt64) raises -> Float64:
+fn mojo_estimate_pi(samples: UInt64) raises -> Float64:
     """
     Estimates pi based on number of samples. Samples may be any integer greater than 0.
 

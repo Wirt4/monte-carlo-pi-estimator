@@ -15,8 +15,6 @@ struct Wrapper:
         print("π ≈ ", self.func(self.samples), "( samples:", self.samples, ")")
 
 
-fn temp():
-    sleep(0.05)
 
 
 fn main():
@@ -27,7 +25,7 @@ fn main():
     except e:
         print("command line must be a valid integer, defaulting to 1000")
 
-    wrapper = Wrapper(estimate_pi, samples)
+    wrapper = Wrapper(mojo_estimate_pi, samples)
 
     try:
         wrapper.run()
