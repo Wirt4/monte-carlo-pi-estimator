@@ -6,9 +6,8 @@ SRC = ./main.mojo
 
 # Build the project
 build:
-	mojo format .
 	mojo build -I=. $(SRC) -o $(TARGET)
-
+	mojo format .
 # Run the program
 run: build
 	./$(TARGET) $(samples)

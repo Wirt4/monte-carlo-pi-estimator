@@ -3,16 +3,24 @@ from random import seed
 from time import monotonic, sleep
 from sys import argv
 import benchmark
+from python import Python, PythonModule, PythonObject
+
+
+fn python_adapter(n: UInt64) raises -> Float64:
+    py = Python.import_module("modules.python_pi")
+    return Float64(py.python_estimate_pi(n))
 
 
 @value
 struct Wrapper:
-    var func: fn (UInt64) raises -> Float64
+    var delegate_fn: fn (UInt64) raises -> Float64
     var samples: UInt64
+    var label: String
 
     fn run(self) raises -> None:
         seed(monotonic())
-        print("π ≈ ", self.func(self.samples), "( samples:", self.samples, ")")
+        var result = self.delegate_fn(self.samples)
+        print(self.label, ": π ≈ ", result, "(samples:", self.samples, ")")
 
 
 fn main():
@@ -23,10 +31,16 @@ fn main():
     except e:
         print("command line must be a valid integer, defaulting to 1000")
 
-    wrapper = Wrapper(mojo_estimate_pi, samples)
+    mojo_wrapper = Wrapper(mojo_estimate_pi, samples, "Mojo")
+    python_wrapper = Wrapper(python_adapter, samples, "Python")
 
     try:
-        wrapper.run()
+        mojo_wrapper.run()
     except e:
-        print("error with wrapper", e)
+        print("error with mojo wrapper", e)
         return
+
+    try:
+        python_wrapper.run()
+    except e:
+        print("error with python wrapper", e)
