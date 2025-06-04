@@ -1,46 +1,62 @@
 from modules import mojo_estimate_pi
 from random import seed
-from time import monotonic, sleep
 from sys import argv
 import benchmark
-from python import Python, PythonModule, PythonObject
+from python import Python
+
+var global_samples: UInt64 = 1000  # 👈 Define a global to avoid closure capture
 
 
-fn python_adapter(n: UInt64) raises -> Float64:
-    py = Python.import_module("modules.python_pi")
-    return Float64(py.python_estimate_pi(n))
+fn run_mojo_benchmark() -> None:
+    try:
+        _ = mojo_estimate_pi(global_samples)
+    except e:
+        print("Mojo did not run")
 
 
-@value
-struct Wrapper:
-    var delegate_fn: fn (UInt64) raises -> Float64
-    var samples: UInt64
-    var label: String
-
-    fn run(self) raises -> None:
-        seed(monotonic())
-        var result = self.delegate_fn(self.samples)
-        print(self.label, ": π ≈ ", result, "(samples:", self.samples, ")")
+fn run_python_benchmark() -> None:
+    try:
+        pi = Python.import_module("modules.python_pi")
+        pi.python_estimate_pi(global_samples)
+    except e:
+        print("Python did not run")
 
 
 fn main():
-    var samples: UInt64 = 1000
+    try:
+        global_samples = Int(argv()[1])
+    except e:
+        print("defaulting to 1000")
 
     try:
-        samples = Int(argv()[1])
-    except e:
-        print("command line must be a valid integer, defaulting to 1000")
+        print(
+            "Mojo",
+            "π ≈ ",
+            mojo_estimate_pi(global_samples),
+            "(samples:",
+            global_samples,
+            ")",
+        )
 
-    mojo_wrapper = Wrapper(mojo_estimate_pi, samples, "Mojo")
-    python_wrapper = Wrapper(python_adapter, samples, "Python")
+        print("benchmarking mojo...")
+        mojo_report = benchmark.run[run_mojo_benchmark]()
+        mojo_report.print()
+    except e:
+        print("mojo estimate did not run")
 
     try:
-        mojo_wrapper.run()
-    except e:
-        print("error with mojo wrapper", e)
-        return
+        pi = Python.import_module("modules.python_pi")
+        print(
+            "Python",
+            "π ≈ ",
+            pi.python_estimate_pi(global_samples),
+            "(samples:",
+            global_samples,
+            ")",
+        )
 
-    try:
-        python_wrapper.run()
+        print("benchmarking python...")
+        python_report = benchmark.run[run_python_benchmark]()
+        python_report.print()
     except e:
-        print("error with python wrapper", e)
+        print("python estimate did not run")
