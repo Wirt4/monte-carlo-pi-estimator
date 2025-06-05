@@ -1,4 +1,5 @@
-from modules import mojo_estimate_pi
+from mojo import mojo_estimate_pi
+
 from random import seed
 from sys import argv
 import benchmark
@@ -22,5 +23,11 @@ fn main():
     try:
         mojo_report = benchmark.run[run_mojo_benchmark]()
         mojo_report.print(benchmark.Unit.ms)
+        print(
+            "pi: "
+            + String(mojo_estimate_pi(global_samples))
+            + " samples: "
+            + String(global_samples)
+        )
     except e:
         print("mojo estimate did not run")

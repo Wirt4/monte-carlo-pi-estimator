@@ -1,55 +1,90 @@
-import sys
 import time
 
-from .python_pi import python_estimate_pi
+
+class Benchmark:
+    def __init__(
+        self, min_runtime=2.0, max_runtime=60.0, warmup_iters=2, max_iters=1_000_000_000
+    ):
+        self._min_runtime = min_runtime
+        self._max_runtime = max_runtime
+        self._warmup_iters = warmup_iters
+        self._max_iters = max_iters
+
+    def _set_track_stats(self):
+        self._timings = []
+        self._iters = 0
+        self._total_time = 0.0
+        self._warmup_total = 0.0
+
+    def run(self, fn):
+        self._set_track_stats()
+        # Warm-Up run
+        for _ in range(self._warmup_iters):
+            t0 = time.perf_counter()
+            fn()
+            t1 = time.perf_counter()
+            self._warmup_total += t1 - t0
+
+        # Benchmark run
+        while (
+            self._total_time < self._min_runtime
+            and self._iters < self._max_iters
+            and self._total_time < self._max_runtime
+        ):
+            t0 = time.perf_counter()
+            fn()
+            t1 = time.perf_counter()
+            elapsed = t1 - t0
+            self._timings.append(elapsed)
+            self._total_time += elapsed
+            self._iters += 1
+
+        if self._iters == 0:
+            raise RuntimeError("Benchmark function executed too quickly to measure.")
+        else:
+            self._calculate_means()
+            return Report(
+                mean=self._mean,
+                total_time=self._total_time,
+                iters=self._iters,
+                warmup_total=self._warmup_total,
+                fastest=self._fastest,
+                slowest=self._slowest,
+            )
+
+    def _calculate_means(self):
+        self._mean = sum(self._timings) / self._iters
+        self._fastest = min(self._timings)
+        self._slowest = max(self._timings)
 
 
-def benchmark(
-    fn, min_runtime=2.0, max_runtime=60.0, warmup_iters=2, max_iters=1_000_000_000
-):
-    warmup_total = 0.0
+class Report:
+    def __init__(self, mean, total_time, iters, warmup_total, fastest, slowest):
+        self._mean = mean
+        self._total_time = total_time
+        self._iters = iters
+        self._warmup_total = warmup_total
+        self._fastest = fastest
+        self._slowest = slowest
 
-    # Warmup phase
-    for _ in range(warmup_iters):
-        t0 = time.perf_counter()
-        fn()
-        t1 = time.perf_counter()
-        warmup_total += t1 - t0
+    def print(self):
+        # only does milliseconds right now
+        self._print_divider()
+        print("Benchmark Report (ms)")
+        self._print_divider()
+        self._print_f("Mean", self._to_miliseconds(self._mean))
+        self._print_f("Total", self._to_miliseconds(self._total_time))
+        self._print_f("Iters", self._iters)
+        self._print_f("Warmup Total", self._to_miliseconds(self._warmup_total))
+        self._print_f("Fastest Mean", self._to_miliseconds(self._fastest))
+        self._print_f("Slowest Mean", self._to_miliseconds(self._slowest))
+        print("")
 
-    timings = []
-    total_time = 0.0
-    iters = 0
+    def _print_divider(self):
+        print("-" * 45)
 
-    # Benchmark phase (adaptive)
-    while total_time < min_runtime and iters < max_iters and total_time < max_runtime:
-        t0 = time.perf_counter()
-        fn()
-        t1 = time.perf_counter()
-        elapsed = t1 - t0
-        timings.append(elapsed)
-        total_time += elapsed
-        iters += 1
+    def _print_f(self, label, value):
+        print(f"{label}: {value}")
 
-    if iters == 0:
-        raise RuntimeError("Benchmark function executed too quickly to measure.")
-
-    mean = sum(timings) / iters
-    fastest = min(timings)
-    slowest = max(timings)
-
-    # Mojo-style report (milliseconds)
-    print("-" * 45)
-    print("Benchmark Report (ms)")
-    print("-" * 45)
-    print(f"Mean: {mean * 1000}")
-    print(f"Total: {total_time}")
-    print(f"Iters: {iters}")
-    print(f"Warmup Total: {warmup_total}")
-    print(f"Fastest Mean: {fastest * 1000}")
-    print(f"Slowest Mean: {slowest * 1000}")
-
-
-if __name__ == "__main__":
-    samples = int(sys.argv[1]) if len(sys.argv) > 1 else 1_000_000
-
-    benchmark(lambda: python_estimate_pi(100000))
+    def _to_miliseconds(self, n):
+        return n * 1000
