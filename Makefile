@@ -13,9 +13,14 @@ run: build
 	./$(TARGET) $(samples)
 
 .PHONY: test
-# Run all tests
-test:
+# Run mojo tests
+test_mojo:
 	mojo test
+
+test_python:
+	python -m unittest discover -s test -p "*.py"
+
+test: test_mojo test_python
 
 # Clean up build artifacts
 clean:
