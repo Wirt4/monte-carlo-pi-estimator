@@ -34,6 +34,8 @@ If you want to run against 1,000,000 samples, you can run the compiled executabl
 or the makefile command that also takes care of the build
 `make run samples=1000000`
 
+`python3 -m python.benchmark`
+
 ## Challenges
 
 Mojo is an emerging language, and as of May 2025, it presents unique challenges:

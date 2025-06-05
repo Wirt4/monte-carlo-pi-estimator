@@ -1,8 +1,8 @@
 # Name of the output binary
-TARGET = estimate_pi
+TARGET = ./mojo/estimate_pi
 
 # Source files
-SRC = ./main.mojo
+SRC = ./mojo/main.mojo
 
 # Build the project
 build:
