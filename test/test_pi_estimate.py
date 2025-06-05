@@ -5,14 +5,16 @@ from modules.python_pi import python_estimate_pi
 
 
 class TestEstimatePi(unittest.TestCase):
+    def setUp(self):
+        seed(42)
+
     def test_pi_range(self):
         """Given a sample size of 1000, when python_estimate_pi is called, then the result is between 2 and 4"""
         est = python_estimate_pi(1000)
         self.assertTrue(2.0 < est and est < 4.0)
 
     def test_rough_accuracy(self):
-        """Given a seeded RNG and a sample size of 500, when python_estimate_pi is called, then the result is close to 3.1 within a tolerance of 0.3"""
-        seed(42)
+        """Given a sample size of 500, when python_estimate_pi is called, then the result is close to 3.1 within a tolerance of 0.3"""
         est = python_estimate_pi(500)
         self.assertTrue(abs(est - 3.1) < 0.3)
 
