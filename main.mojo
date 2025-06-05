@@ -4,7 +4,7 @@ from sys import argv
 import benchmark
 from python import Python
 
-var global_samples: UInt64 = 1000  # 👈 Define a global to avoid closure capture
+var global_samples: UInt64 = 1000
 
 
 fn run_mojo_benchmark() -> None:
