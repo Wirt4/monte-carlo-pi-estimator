@@ -30,8 +30,7 @@ fn main():
 
     try:
         print(
-            "Mojo",
-            "π ≈ ",
+            "Mojo π ≈ ",
             mojo_estimate_pi(global_samples),
             "(samples:",
             global_samples,
@@ -47,8 +46,7 @@ fn main():
     try:
         pi = Python.import_module("modules.python_pi")
         print(
-            "Python",
-            "π ≈ ",
+            "Python π ≈ ",
             pi.python_estimate_pi(global_samples),
             "(samples:",
             global_samples,
