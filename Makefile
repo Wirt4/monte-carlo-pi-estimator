@@ -18,7 +18,7 @@ test_mojo:
 	mojo test
 
 test_python:
-	python -m unittest discover -s test -p "*.py"
+	python -m unittest python/test_*.py
 
 test: test_mojo test_python
 
