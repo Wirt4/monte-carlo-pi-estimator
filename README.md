@@ -10,20 +10,29 @@ This project implements a Monte Carlo method to estimate the value of π using [
 - Basic testing using Mojo's available
 
 ## Getting Started
-Since Mojo currently has limited platform support, we're containerized in Docker. Check that docker is running. Build the project with `docker compose build`. Start the environment with `docker compose run --rm app`.
+Since Mojo currently has limited platform support, we're containerized in Docker.
+Check that docker is running. Build the project with `docker compose build`. 
+Start the environment with `docker compose run --rm app`(or run `sh docker-compose.sh` if you're using a Mac with zsh).
 
 Mojo commands are encapsulated with a Makefile. Run `make` to build the project. Run `make run samples=${number of samples}` to run it, or you can run `./estimate_pi ${number of samples}` against the compiled executable. Run `make test` to run all unit tests and `make clean` to remove the executable.
 
 Shutting down is an easy enough process. Run `exit` to get out of the virtual environment, then `docker compose down` to shut down any remaining containers.
 
 ## Tests
-run `mojo test` to run all unit tests.
+Run `make test_mojo` to execute all mojo tests, `make test_python` to execute the python tests or `make test` to execute all tests together.
 
 ## Linting
 From root directory: `mojo format .`
 
 ## Prequisites
   - `Docker` and `Docker Desktop`
+
+## Benchmarks
+`main.mojo` runs the python and mojo versions of the monte carlo pi estimator. The number of samples defaults to 1000, but you can enter something different on the command line.
+If you want to run against 1,000,000 samples, you can run the compiled executable
+`./execute_pi 1000000` 
+or the makefile command that also takes care of the build
+`make run samples=1000000`
 
 ## Challenges
 

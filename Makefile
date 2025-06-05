@@ -6,17 +6,21 @@ SRC = ./main.mojo
 
 # Build the project
 build:
+	mojo build -I=. $(SRC) -o $(TARGET)
 	mojo format .
-	mojo build $(SRC) -o $(TARGET)
-
 # Run the program
 run: build
 	./$(TARGET) $(samples)
 
 .PHONY: test
-# Run all tests
-test:
+# Run mojo tests
+test_mojo:
 	mojo test
+
+test_python:
+	python -m unittest discover -s test -p "*.py"
+
+test: test_mojo test_python
 
 # Clean up build artifacts
 clean:

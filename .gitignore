@@ -4,3 +4,5 @@
 *.egg-info
 # The compiled executable
 estimate_pi
+#cache
+modules/__pycache__/*
