@@ -8,6 +8,8 @@ var global_samples: UInt64 = 1_000_000
 
 
 fn run_mojo_benchmark() -> None:
+    """Runs the function "mojo_estimate_pi" with the inputs passed from the command line.
+    """
     try:
         _ = mojo_estimate_pi(global_samples)
     except e:
@@ -15,10 +17,17 @@ fn run_mojo_benchmark() -> None:
 
 
 fn main():
+    """Outputs the benchmark stats and the output of the function "mojo_estimate_pi".
+
+    The method takes a positive integer as a command-line argument
+    """
     try:
-        global_samples = Int(argv()[1])
+        if (len(argv())) > 1:
+            global_samples = Int(argv()[1])
+        else:
+            global_samples = 1_000_000
     except e:
-        print("defaulting to 1000000")
+        print("issue with command line input")
 
     try:
         mojo_report = benchmark.run[run_mojo_benchmark]()

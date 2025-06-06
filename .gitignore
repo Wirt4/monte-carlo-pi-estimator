@@ -3,6 +3,8 @@
 .pixi
 *.egg-info
 # The compiled executable
+main
 mojo/estimate_pi
 #cache
+*.pyc
 python/__pycache__/*
