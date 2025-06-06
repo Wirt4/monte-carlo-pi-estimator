@@ -11,6 +11,10 @@ class Benchmark:
         self._max_iters = max_iters
 
     def run(self, fn):
+        """Returns a Report object containing the timings and iterations run
+
+        Givens are the min runtime, max runtime, warmup iterations and max iterations passed in the constructor.
+        """
         self._set_track_stats()
         # Warm-Up run
         for _ in range(self._warmup_iters):
