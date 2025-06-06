@@ -25,7 +25,8 @@ class Benchmark:
 
         # Benchmark run
         while (
-            self._total_time < self._min_runtime
+            self._total_time
+            < self._min_runtime  # something's weird with this evaluation
             and self._iters < self._max_iters
             and self._total_time < self._max_runtime
         ):
@@ -40,20 +41,12 @@ class Benchmark:
         if self._iters == 0:
             raise RuntimeError("Benchmark function executed too quickly to measure.")
         else:
-            self._calculate_means()
             return Report(
-                mean=self._mean,
-                total_time=self._total_time,
+                timings=self._timings,
                 iters=self._iters,
+                total_time=self._total_time,
                 warmup_total=self._warmup_total,
-                fastest=self._fastest,
-                slowest=self._slowest,
             )
-
-    def _calculate_means(self):
-        self._mean = sum(self._timings) / self._iters
-        self._fastest = min(self._timings)
-        self._slowest = max(self._timings)
 
     def _set_track_stats(self):
         self._timings = []
@@ -63,25 +56,24 @@ class Benchmark:
 
 
 class Report:
-    def __init__(self, mean, total_time, iters, warmup_total, fastest, slowest):
-        self._mean = mean
+    def __init__(self, timings, iters, total_time, warmup_total):
+        self._timings = timings
         self._total_time = total_time
         self._iters = iters
         self._warmup_total = warmup_total
-        self._fastest = fastest
-        self._slowest = slowest
 
     def print(self):
+        """Prints the execution mean, total, iterations, warmup total, fastest mean and slowest mean from the benchmark run."""
         # only does milliseconds right now
         self._print_divider()
         print("Benchmark Report (ms)")
         self._print_divider()
-        self._print_f("Mean", self._to_miliseconds(self._mean))
+        self._print_f("Mean", self._to_miliseconds(sum(self._timings) / self._iters))
         self._print_f("Total", self._to_miliseconds(self._total_time))
         self._print_f("Iters", self._iters)
         self._print_f("Warmup Total", self._to_miliseconds(self._warmup_total))
-        self._print_f("Fastest Mean", self._to_miliseconds(self._fastest))
-        self._print_f("Slowest Mean", self._to_miliseconds(self._slowest))
+        self._print_f("Fastest Mean", self._to_miliseconds(min(self._timings)))
+        self._print_f("Slowest Mean", self._to_miliseconds(max(self._timings)))
         print("")
 
     def _print_divider(self):
