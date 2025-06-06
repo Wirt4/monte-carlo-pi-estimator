@@ -30,8 +30,9 @@ fn main():
         print("issue with command line input")
 
     try:
-        mojo_report = benchmark.run[run_mojo_benchmark]()
-        mojo_report.print(benchmark.Unit.ms)
+        mojo_report = benchmark.run[run_mojo_benchmark](1, 2, 3, 4)
+        # 1 warmup it, 2 max iterations, min total time 3 sec, max total time 4 secs
+        mojo_report.print()
         print(
             "pi: "
             + String(mojo_estimate_pi(global_samples))
