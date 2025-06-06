@@ -10,12 +10,6 @@ class Benchmark:
         self._warmup_iters = warmup_iters
         self._max_iters = max_iters
 
-    def _set_track_stats(self):
-        self._timings = []
-        self._iters = 0
-        self._total_time = 0.0
-        self._warmup_total = 0.0
-
     def run(self, fn):
         self._set_track_stats()
         # Warm-Up run
@@ -56,6 +50,12 @@ class Benchmark:
         self._mean = sum(self._timings) / self._iters
         self._fastest = min(self._timings)
         self._slowest = max(self._timings)
+
+    def _set_track_stats(self):
+        self._timings = []
+        self._iters = 0
+        self._total_time = 0.0
+        self._warmup_total = 0.0
 
 
 class Report:
