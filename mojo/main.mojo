@@ -4,7 +4,7 @@ from random import seed
 from sys import argv
 import benchmark
 
-var global_samples: UInt64 = 1_000_000
+var global_samples: Int = 1_000_000
 
 
 fn run_mojo_benchmark() -> None:
