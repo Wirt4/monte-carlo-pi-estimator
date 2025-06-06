@@ -1,7 +1,8 @@
 services:
   app:
+    platform: linux/amd64
     build:
-      context: .
+      context: .  
     stdin_open: true
     tty: true
     command: /bin/sh -i -c "pixi shell"
