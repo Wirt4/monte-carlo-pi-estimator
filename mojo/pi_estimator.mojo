@@ -1,7 +1,38 @@
-from random import random_float64
+from random import rand
+from memory import UnsafePointer
+from buffer import NDBuffer
+
+alias type = DType.float32
+alias point = UnsafePointer[Scalar[type]]
+alias buffer = NDBuffer[type, 1]
 
 
-fn mojo_estimate_pi(samples: UInt64) raises -> Float64:
+@value
+struct RandomizedCoorindates:
+    fn __init__(self, size: Int):
+        self._x_ptr = point.alloc(size)
+        self._y_ptr = point.alloc(size)
+
+        self._fill(self._x_ptr)
+        self._fill(self._y_ptr)
+
+        self._x_buffer = buffer(self._x_ptr, size)
+        self._y_buffer = buffer(self._y_ptr, size)
+
+    fn get_euclidian_distance_squared(self, ndx: Int) -> Float32:
+        x = self._x_buffer[ndx]
+        y = self._y_buffer[ndx]
+        return x * x + y * y
+
+    fn clear(self):
+        self._x_ptr.free()
+        self._y_ptr.free()
+
+    fn _fill(self, pointer: UnsafePointer):
+        rand[type](y_ptr, samples, min=-1.0, max=1.0)
+
+
+fn mojo_estimate_pi(samples: Int) raises -> Float32:
     """
     Estimates pi based on number of samples. Samples may be any integer greater than 0.
 
@@ -14,15 +45,21 @@ fn mojo_estimate_pi(samples: UInt64) raises -> Float64:
     if samples == 0:
         raise ("Number of samples cannot be 0")
 
-    circle_area = 0
-    for _ in range(Int(samples)):
-        x = random_float64(-1.0, 1.0)
-        y = random_float64(-1.0, 1.0)
-        if x * x + y * y <= 1:
-            circle_area += 1
+    var x_ptr = UnsafePointer[Scalar[type]].alloc(samples)
+    var y_ptr = UnsafePointer[Scalar[type]].alloc(samples)
+    rand[type](x_ptr, samples, min=-1.0, max=1.0)
+    rand[type](y_ptr, samples, min=-1.0, max=1.0)
+    var y_buf = NDBuffer[type, 1](y_ptr, samples)
+    var x_buf = NDBuffer[type, 1](x_ptr, samples)
+    var inside: Float32 = 0.0
+    for i in range(samples):
+        var x = x_buf[i]
+        var y = y_buf[i]
+        var d = x * x + y * y
+        if d <= 1.0:
+            inside += 1.0
 
-    return 4.0 * circle_area / Float64(samples)
+    x_ptr.free()
+    y_ptr.free()
 
-
-fn random_coordinate() -> Float64:
-    return random_float64(-1.0, 1.0)
+    return 4.0 * inside / Float32(samples)
