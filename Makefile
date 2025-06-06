@@ -1,8 +1,8 @@
 # Name of the output binary
-TARGET = estimate_pi
+TARGET = ./mojo/estimate_pi
 
 # Source files
-SRC = ./main.mojo
+SRC = ./mojo/main.mojo
 
 # Build the project
 build:
@@ -18,7 +18,7 @@ test_mojo:
 	mojo test
 
 test_python:
-	python -m unittest discover -s test -p "*.py"
+	python -m unittest python/test_*.py
 
 test: test_mojo test_python
 

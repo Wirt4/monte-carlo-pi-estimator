@@ -1,7 +1,7 @@
 import unittest
 from random import seed
 
-from modules.python_pi import python_estimate_pi
+from .python_pi import python_estimate_pi
 
 
 class TestEstimatePi(unittest.TestCase):

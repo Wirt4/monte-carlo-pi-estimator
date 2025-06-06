@@ -8,6 +8,7 @@ This project implements a Monte Carlo method to estimate the value of π using [
 - Random point generation within a unit square
 - Calculation of π based on the ratio of points inside the unit circle
 - Basic testing using Mojo's available
+- Benchmarking of fastest and slowest means in Mojo and equivalent python implementations
 
 ## Getting Started
 Since Mojo currently has limited platform support, we're containerized in Docker.
@@ -33,6 +34,8 @@ If you want to run against 1,000,000 samples, you can run the compiled executabl
 `./execute_pi 1000000` 
 or the makefile command that also takes care of the build
 `make run samples=1000000`
+or
+`python3 -m python.main 100000`
 
 ## Challenges
 
