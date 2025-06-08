@@ -12,8 +12,7 @@ This project implements a Monte Carlo method to estimate the value of π using [
 
 ## Getting Started
 Since Mojo currently has limited platform support, we're containerized in Docker.
-Check that docker is running. Build the project with `docker compose build`. 
-Start the environment with `docker compose run --rm app`(or run `sh docker-compose.sh` if you're using a Mac with zsh).
+Build the container with `docker build --platform linux/amd64 -t pi-estimator .`. Run it with `docker run --platform linux/amd64 -it pi-estimator`. Once in the interactive shell run `pixi shell` to use mojo commands.
 
 Mojo commands are encapsulated with a Makefile. Run `make` to build the project. Run `make run samples=${number of samples}` to run it, or you can run `./estimate_pi ${number of samples}` against the compiled executable. Run `make test` to run all unit tests and `make clean` to remove the executable.
 

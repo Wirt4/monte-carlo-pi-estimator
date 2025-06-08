@@ -18,8 +18,9 @@ RUN apt-get update && apt-get install -y \
 RUN curl -fsSL https://pixi.sh/install.sh | sh
 ENV PATH="/root/.pixi/bin:$PATH"
 
+ENV PIXI_PLATFORM=linux-arm64
 # Copy project files
 COPY . /app
-ENV PIXI_PLATFORM=linux-64
+
 # Install Pixi
-RUN pixi install
+# RUN pixi install
